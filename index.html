@@ -439,6 +439,14 @@
 
 <script>
   (function(){
+    // Ensure every outbound link (and mailto/tel) opens in a new tab
+    document.querySelectorAll('a[href]').forEach(function(a){
+      var href=a.getAttribute('href')||'';
+      if(/^(https?:|mailto:|tel:)/i.test(href)){
+        a.setAttribute('target','_blank');
+        a.setAttribute('rel','noopener noreferrer');
+      }
+    });
     var els=document.querySelectorAll('.reveal');
     if(!('IntersectionObserver'in window)||window.matchMedia('(prefers-reduced-motion:reduce)').matches){
       els.forEach(function(e){e.classList.add('in')});return;
