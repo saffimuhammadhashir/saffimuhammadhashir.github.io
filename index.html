@@ -1,34 +1,438 @@
 <!doctype html>
-
-<!-- this is a comment for human! -->
-
 <html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Saffi Muhammad Hashir — ML Engineer & Full-Stack Developer specializing in real-time computer vision. Founder & CTO at Chrio.">
+<meta property="og:title" content="Saffi Muhammad Hashir — ML Engineer & Founder">
+<meta property="og:description" content="Real-time computer vision and production web applications. 30 FPS, 99.5% accuracy, #1 on FiVE-Bench (ICCV 2025).">
+<meta property="og:type" content="website">
+<title>Saffi Muhammad Hashir — ML Engineer & Founder</title>
+<style>
+  :root{
+    --ground:#F4F6F7;
+    --panel:#FFFFFF;
+    --panel-2:#FBFCFC;
+    --ink:#0C1A1C;
+    --ink-2:#2C4145;
+    --muted:#5E7378;
+    --hairline:#E1E7E8;
+    --hairline-2:#EDF1F1;
+    --accent:#0E7C66;
+    --accent-ink:#0A5E4D;
+    --accent-wash:#E7F2EF;
+    --signal:#C6472B;
+    --signal-wash:#F7E9E4;
+    --font-mono:ui-monospace,"SF Mono","Cascadia Code","JetBrains Mono","Roboto Mono",Menlo,Consolas,monospace;
+    --font-sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --maxw:1060px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{
+    margin:0;background:var(--ground);color:var(--ink);
+    font-family:var(--font-sans);line-height:1.6;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{color:var(--accent-ink)}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
 
-  <header>
-    <title>SAFFI MUHAMMAD HASHIR's Portal</title>
-     <link rel="stylesheet" href="css/master.css">
-     <link rel="FaviconIcon" href="favicon.ico" type="image/x-Icon">
-     <link rel="shortcut" href="favicon.ico" type="image/x-Icon">
-     <meta name="viewport" content ="width=device=width, initial-scale=1, shrink-to-fit=no">
-     <meta name="name" content="Saffi Muhammad Hashir's portal">
-     <meta name="robots" content="noindex,nofollow">
-<img src="images/banner.jpg" width="45%"  alt="banner">
-<h1>SAFFI MUHAMMAD HASHIR's Portal</h1>
-<h2>About Me</h2>
+  /* ---------- type ---------- */
+  .eyebrow{
+    font-family:var(--font-mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent-ink);font-weight:600;
+  }
+  .mono{font-family:var(--font-mono)}
+  h1,h2,h3{margin:0;text-wrap:balance;letter-spacing:-.015em;line-height:1.1}
+  .sec-h{display:flex;align-items:baseline;gap:16px;margin-bottom:34px}
+  .sec-h .idx{font-family:var(--font-mono);font-size:13px;color:var(--muted);letter-spacing:.05em}
+  .sec-h h2{font-size:clamp(24px,3.4vw,34px);font-weight:700}
+  .sec-h .rule{flex:1;height:1px;background:var(--hairline);align-self:center}
 
-<p>I am an 18 years old Bachelor, learning advance skills related to Computer Sciences</p>
-<p>I am a beginner in mobile app and website developer in Islamabad.</p>
-<p>I am currently doing my degree of  BS in computer science from the FAST NUCES University ,Islamabad</p>
-<h2>Credentials and Portfolio</h2>
-<p><a href="resume.html">My Resume</a> |<a href="https://github.com/saffimuhammadhashir"> My Github</a></p>
-<h2>Credentials and Portfolio.</h2
-    <p>Email: <a href="mailto:saffimhashir123@gmail.com" target="_blank">saffimhashir123@gmail.com</a></p>
-    <p>Insta: <a href="https://www.instagram.com/saffimuhammadhashir/">Saffi Muhammad Hashir</a></p>
-  </body>
+  section{padding:72px 0;border-top:1px solid var(--hairline-2)}
 
-  <footer>
-    <hr>
-<code>Copyright (c) 2022 Saffi Muhammad Hashir</code>
-  </footer>
+  /* ---------- nav ---------- */
+  header.nav{position:sticky;top:0;z-index:20;background:rgba(244,246,247,.82);
+    backdrop-filter:blur(10px);border-bottom:1px solid var(--hairline)}
+  .nav-in{max-width:var(--maxw);margin:0 auto;padding:13px 24px;display:flex;align-items:center;gap:22px}
+  .brand{font-family:var(--font-mono);font-weight:700;letter-spacing:.02em;color:var(--ink);font-size:15px}
+  .brand .dot{color:var(--accent)}
+  .nav-links{margin-left:auto;display:flex;gap:22px}
+  .nav-links a{font-family:var(--font-mono);font-size:13px;color:var(--ink-2);letter-spacing:.02em}
+  .nav-links a:hover{color:var(--accent)}
+  .nav-cta{font-family:var(--font-mono);font-size:13px;padding:7px 14px;border:1px solid var(--ink);
+    color:var(--ink);border-radius:2px;transition:background .15s,color .15s}
+  .nav-cta:hover{background:var(--ink);color:#fff}
+  @media(max-width:720px){.nav-links{display:none}}
 
+  /* ---------- hero ---------- */
+  .hero{position:relative;padding:88px 0 76px}
+  .frame{position:relative}
+  .tick{position:absolute;width:20px;height:20px;border:2px solid var(--accent);pointer-events:none}
+  .tick.tl{top:-14px;left:-14px;border-right:0;border-bottom:0}
+  .tick.tr{top:-14px;right:-14px;border-left:0;border-bottom:0}
+  .tick.bl{bottom:-14px;left:-14px;border-right:0;border-top:0}
+  .tick.br{bottom:-14px;right:-14px;border-left:0;border-top:0}
+  .hero h1{font-size:clamp(40px,7.2vw,74px);font-weight:800;margin:16px 0 0}
+  .hero .lead{font-size:clamp(18px,2.2vw,22px);color:var(--ink-2);max-width:56ch;margin:20px 0 0;line-height:1.5}
+  .hero .loc{font-family:var(--font-mono);font-size:13px;color:var(--muted);margin-top:18px;display:flex;align-items:center;gap:8px}
+  .hero .loc::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 3px var(--accent-wash)}
+  .cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+  .btn{font-family:var(--font-mono);font-size:14px;padding:11px 20px;border-radius:2px;
+    border:1px solid var(--ink);color:var(--ink);display:inline-flex;align-items:center;gap:9px;transition:all .15s}
+  .btn:hover{background:var(--ink);color:#fff}
+  .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+  .btn.primary:hover{background:var(--accent-ink);border-color:var(--accent-ink);color:#fff}
+  .btn svg{width:15px;height:15px}
+
+  /* readout */
+  .readout{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--hairline);
+    border:1px solid var(--hairline);border-radius:4px;overflow:hidden;margin-top:46px}
+  .readout .cell{background:var(--panel);padding:20px 22px}
+  .readout .num{font-family:var(--font-mono);font-size:clamp(24px,3.4vw,32px);font-weight:700;color:var(--ink);
+    font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+  .readout .num .u{font-size:15px;color:var(--accent-ink);margin-left:2px}
+  .readout .lbl{font-family:var(--font-mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-top:7px}
+  @media(max-width:720px){.readout{grid-template-columns:repeat(2,1fr)}}
+
+  /* ---------- about ---------- */
+  .about p{font-size:18px;max-width:66ch;color:var(--ink-2);margin:0 0 18px}
+  .about p strong{color:var(--ink);font-weight:650}
+
+  /* ---------- experience ---------- */
+  .xp{display:grid;gap:0}
+  .job{display:grid;grid-template-columns:210px 1fr;gap:30px;padding:30px 0;border-top:1px solid var(--hairline)}
+  .job:first-child{border-top:0;padding-top:0}
+  .job .meta .when{font-family:var(--font-mono);font-size:12px;color:var(--muted);letter-spacing:.03em}
+  .job .meta .co{font-size:21px;font-weight:700;margin-top:8px;letter-spacing:-.01em}
+  .job .meta .role{font-family:var(--font-mono);font-size:13px;color:var(--accent-ink);margin-top:3px}
+  .job .meta .site{display:inline-block;margin-top:12px;font-family:var(--font-mono);font-size:12px;
+    padding:4px 10px;border:1px solid var(--hairline);border-radius:2px;color:var(--ink-2)}
+  .job .meta .site:hover{border-color:var(--accent);color:var(--accent)}
+  .job ul{margin:0;padding:0;list-style:none;display:grid;gap:11px}
+  .job li{position:relative;padding-left:20px;color:var(--ink-2);font-size:15.5px}
+  .job li::before{content:"";position:absolute;left:0;top:10px;width:7px;height:2px;background:var(--accent)}
+  .job li strong{color:var(--ink);font-weight:650}
+  @media(max-width:680px){.job{grid-template-columns:1fr;gap:16px}}
+
+  /* ---------- projects ---------- */
+  .feat{position:relative;background:var(--panel);border:1px solid var(--hairline);border-radius:6px;padding:34px;margin-bottom:26px}
+  .feat .flag{position:absolute;top:-11px;left:26px;background:var(--signal);color:#fff;
+    font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:4px 11px;border-radius:2px}
+  .feat h3{font-size:27px;font-weight:750;margin-bottom:6px}
+  .feat .sub{font-family:var(--font-mono);font-size:13px;color:var(--muted);margin-bottom:16px}
+  .feat p{color:var(--ink-2);font-size:16px;max-width:70ch;margin:0 0 18px}
+  .feat p strong{color:var(--ink)}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  @media(max-width:720px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid var(--hairline);border-radius:6px;padding:22px 24px;
+    display:flex;flex-direction:column;transition:border-color .15s,transform .15s}
+  .card:hover{border-color:var(--accent);transform:translateY(-2px)}
+  .card .top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+  .card h3{font-size:18px;font-weight:700}
+  .card .tag{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--accent-ink);background:var(--accent-wash);padding:3px 8px;border-radius:2px;white-space:nowrap}
+  .card p{color:var(--muted);font-size:14.5px;margin:11px 0 16px;flex:1}
+  .card .links{display:flex;gap:16px;font-family:var(--font-mono);font-size:12.5px}
+  .card .links a{display:inline-flex;align-items:center;gap:6px}
+  .card .links a svg{width:13px;height:13px}
+  .stack{display:flex;flex-wrap:wrap;gap:7px;margin-top:2px}
+  .chip{font-family:var(--font-mono);font-size:11.5px;color:var(--ink-2);border:1px solid var(--hairline);
+    padding:4px 9px;border-radius:2px;background:var(--panel-2)}
+
+  /* ---------- skills ---------- */
+  .skills{display:grid;gap:26px}
+  .skillrow{display:grid;grid-template-columns:190px 1fr;gap:24px;align-items:start}
+  .skillrow .k{font-family:var(--font-mono);font-size:13px;letter-spacing:.04em;color:var(--accent-ink);padding-top:5px}
+  .skillrow .v{display:flex;flex-wrap:wrap;gap:8px}
+  @media(max-width:680px){.skillrow{grid-template-columns:1fr;gap:12px}}
+
+  /* ---------- awards ---------- */
+  .awards{display:grid;gap:0}
+  .award{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:baseline;
+    padding:16px 0;border-top:1px solid var(--hairline)}
+  .award:first-child{border-top:0}
+  .award .a-main{font-size:16px}
+  .award .a-main b{font-weight:700;color:var(--ink)}
+  .award .a-main span{color:var(--muted);font-size:14.5px}
+  .award .yr{font-family:var(--font-mono);font-size:12.5px;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums}
+
+  /* ---------- edu / certs ---------- */
+  .two{display:grid;grid-template-columns:1fr 1.35fr;gap:44px}
+  @media(max-width:780px){.two{grid-template-columns:1fr;gap:40px}}
+  .edu-card{background:var(--panel);border:1px solid var(--hairline);border-radius:6px;padding:24px}
+  .edu-card .deg{font-size:19px;font-weight:700}
+  .edu-card .inst{color:var(--ink-2);margin-top:4px}
+  .edu-card .when{font-family:var(--font-mono);font-size:12.5px;color:var(--muted);margin-top:12px}
+  .certgrp{margin-bottom:22px}
+  .certgrp:last-child{margin-bottom:0}
+  .certgrp .g{font-family:var(--font-mono);font-size:12px;letter-spacing:.05em;text-transform:uppercase;
+    color:var(--accent-ink);margin-bottom:11px}
+  .cert{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:baseline;padding:8px 0;border-top:1px solid var(--hairline-2)}
+  .cert:first-of-type{border-top:0}
+  .cert .c-n{font-size:14.5px;color:var(--ink)}
+  .cert .c-n em{font-style:normal;color:var(--muted);font-size:13px}
+  .cert .c-d{font-family:var(--font-mono);font-size:12px;color:var(--muted);white-space:nowrap}
+
+  /* ---------- footer ---------- */
+  footer{border-top:1px solid var(--hairline);padding:64px 0 54px;margin-top:20px}
+  footer h2{font-size:clamp(26px,4vw,40px);font-weight:800;letter-spacing:-.02em}
+  footer .sub{color:var(--ink-2);font-size:17px;margin-top:12px;max-width:52ch}
+  footer .links{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+  footer .colophon{font-family:var(--font-mono);font-size:12px;color:var(--muted);margin-top:44px;letter-spacing:.02em}
+
+  .reveal{opacity:0;transform:translateY(14px)}
+  .reveal.in{opacity:1;transform:none;transition:opacity .6s ease,transform .6s ease}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important}}
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="nav-in">
+    <span class="brand">saffi<span class="dot">.</span>hashir</span>
+    <nav class="nav-links">
+      <a href="#work">work</a>
+      <a href="#projects">projects</a>
+      <a href="#skills">skills</a>
+      <a href="#recognition">recognition</a>
+    </nav>
+    <a class="nav-cta" href="https://github.com/saffimuhammadhashir" target="_blank" rel="noopener">GitHub ↗</a>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- HERO -->
+  <section class="hero" style="border-top:0">
+    <div class="frame">
+      <span class="tick tl"></span><span class="tick tr"></span><span class="tick bl"></span><span class="tick br"></span>
+      <div class="eyebrow">ML Engineer · Computer Vision · Founder</div>
+      <h1>Saffi Muhammad<br>Hashir</h1>
+      <p class="lead">I build real-time computer-vision systems and ship them as production products — from 30&nbsp;FPS cricket analytics to a video-editing pipeline ranked #1 at ICCV&nbsp;2025.</p>
+      <div class="loc">Islamabad, Pakistan</div>
+      <div class="cta-row">
+        <a class="btn primary" href="mailto:saffimhashir123@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          Email
+        </a>
+        <a class="btn" href="https://linkedin.com/in/saffi-muhammad-hashir" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a class="btn" href="https://github.com/saffimuhammadhashir" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+    </div>
+
+    <div class="readout">
+      <div class="cell"><div class="num">30<span class="u">fps</span></div><div class="lbl">Real-time inference</div></div>
+      <div class="cell"><div class="num">99.5<span class="u">%</span></div><div class="lbl">Detection accuracy</div></div>
+      <div class="cell"><div class="num">33<span class="u">ms</span></div><div class="lbl">Latency · 6× faster</div></div>
+      <div class="cell"><div class="num">2</div><div class="lbl">Startups founded</div></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="about reveal">
+    <div class="sec-h"><span class="idx">01</span><h2>About</h2><span class="rule"></span></div>
+    <p>I'm an <strong>ML engineer and full-stack developer</strong> focused on real-time computer vision and the production systems that carry it. I like the whole path — training a model to 99.5% accuracy, then squeezing it to 30&nbsp;FPS and putting it behind a product people actually use.</p>
+    <p>I've founded <strong>two tech startups</strong>, with work recognized at the Google Startup Program, HBL P@SHA ICT Awards, and Prime Minister Pitch Perfect. Currently building the Chrio sports-tech ecosystem and finishing a BS in Computer Science at FAST-NUCES.</p>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="work" class="reveal">
+    <div class="sec-h"><span class="idx">02</span><h2>Experience</h2><span class="rule"></span></div>
+    <div class="xp">
+      <div class="job">
+        <div class="meta">
+          <div class="when">Jun 2024 — Present</div>
+          <div class="co">Chrio</div>
+          <div class="role">Founder &amp; CTO</div>
+          <a class="site" href="https://chrio.site" target="_blank" rel="noopener">chrio.site ↗</a>
+        </div>
+        <ul>
+          <li>Built <strong>real-time cricket analytics at 30 FPS</strong> using YOLO + Detectron2 + SORT + SAHI, reaching <strong>99.5% accuracy</strong>.</li>
+          <li>Architected a <strong>multi-product ecosystem</strong> (Chrio Atlas, CritRate, Chrio Flow) across 7 platforms and <strong>led 25 engineers</strong>.</li>
+          <li>Optimized GPU inference with CUDA/PyTorch, cutting latency from <strong>200 ms to 33 ms</strong> — a 6× speedup.</li>
+        </ul>
+      </div>
+      <div class="job">
+        <div class="meta">
+          <div class="when">Nov 2025 — Present</div>
+          <div class="co">Repic</div>
+          <div class="role">Co-Founder &amp; CTO</div>
+          <a class="site" href="https://repic.site" target="_blank" rel="noopener">repic.site ↗</a>
+        </div>
+        <ul>
+          <li>Designed a <strong>microservices architecture</strong> with an API gateway.</li>
+          <li>Implemented end-to-end auth with <strong>OAuth 2.0 + JWT + RBAC</strong>.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="reveal">
+    <div class="sec-h"><span class="idx">03</span><h2>Projects</h2><span class="rule"></span></div>
+
+    <div class="feat">
+      <span class="flag">Featured · Final Year Project</span>
+      <h3>VFXGen</h3>
+      <div class="sub">Cinematic object replacement · #1 on FiVE-Bench (ICCV 2025)</div>
+      <p>A <strong>seven-stage AI pipeline</strong> for cinematic object replacement using Hunyuan3D, COLMAP, OWLv2&nbsp;+&nbsp;SAM&nbsp;+&nbsp;XMem masking, and the 4.1B-parameter WAN 2.1-VACE video model. <strong>Ranked #1 on FiVE-Bench</strong>, leading 12/14 metrics and all 5 edit-correctness scores at ~5% the inference cost of competing systems.</p>
+      <div class="stack">
+        <span class="chip">React</span><span class="chip">FastAPI</span><span class="chip">Hunyuan3D</span><span class="chip">COLMAP</span><span class="chip">SAM</span><span class="chip">XMem</span><span class="chip">WAN 2.1-VACE</span><span class="chip">Gemini</span><span class="chip">GCP</span>
+      </div>
+      <div class="links" style="margin-top:18px">
+        <a href="https://f25-111-d-vfx-gen.vercel.app" target="_blank" rel="noopener">Live site ↗</a>
+      </div>
+    </div>
+
+    <div style="font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:6px 2px 16px">Chrio Product Suite</div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="top"><h3>Chrio Atlas</h3><span class="tag">Internal Ops</span></div>
+        <p>Resource-management and hiring platform running onboarding and team coordination, with AI-powered candidate screening at scale.</p>
+        <div class="links"><a href="https://chrioatlas.com" target="_blank" rel="noopener">Site ↗</a><a href="https://drive.google.com/file/d/1xANsonS31Tfh_NtY7dfzvDLnxZ0AfLkU/view" target="_blank" rel="noopener">Demo ▸</a></div>
+      </div>
+      <div class="card">
+        <div class="top"><h3>CritRate</h3><span class="tag">Cricket AI</span></div>
+        <p>Cricket-analytics platform for match tracking and player evaluation, with real-time insights and AI-driven outcome prediction.</p>
+        <div class="links"><a href="https://critrate.chrio.site" target="_blank" rel="noopener">Site ↗</a><a href="https://drive.google.com/file/d/19CUX89A05vw4tX2L4snSW0n1kStpVvy2/view" target="_blank" rel="noopener">Demo ▸</a></div>
+      </div>
+      <div class="card">
+        <div class="top"><h3>Dhundo</h3><span class="tag">Search Engine</span></div>
+        <p>Aggregates product listings across the Pakistani internet to compare prices and deals — built for high-scale crawling and price discovery.</p>
+        <div class="links"><a href="https://dhundo.store" target="_blank" rel="noopener">Site ↗</a><a href="https://drive.google.com/file/d/1PVIu43Oq-aVuDyD6x0fiXXQFdcmdukOK/view" target="_blank" rel="noopener">Demo ▸</a></div>
+      </div>
+      <div class="card">
+        <div class="top"><h3>Tifl</h3><span class="tag">HIPAA Health</span></div>
+        <p>HIPAA-compliant platform to track developmental milestones, manage health records, and monitor child growth from pregnancy to age three.</p>
+        <div class="links"><a href="https://tiflcare.com" target="_blank" rel="noopener">Site ↗</a><a href="https://drive.google.com/file/d/1aPrkUvea4pMhGH1--L_0X3JLDMw52Ein/view" target="_blank" rel="noopener">Demo ▸</a></div>
+      </div>
+      <div class="card">
+        <div class="top"><h3>Chrio Flow</h3><span class="tag">Access Control</span></div>
+        <p>Centralized feed and access-management platform handling authentication, permissions, and structured feed workflows across Chrio's systems.</p>
+        <div class="links"><a href="https://chrioflow.chrioatlas.com" target="_blank" rel="noopener">Site ↗</a><a href="https://drive.google.com/file/d/1lBI723kALiLOr2NEcc_uYPBu492mt5Di/view" target="_blank" rel="noopener">Demo ▸</a></div>
+      </div>
+      <div class="card">
+        <div class="top"><h3>AscorLog</h3><span class="tag">Procurement</span></div>
+        <p>Procurement and operations platform tracking materials and workflows across supply chains, with structured approvals and traceability.</p>
+        <div class="links"><a href="https://ascorlog.com" target="_blank" rel="noopener">Site ↗</a><a href="https://drive.google.com/file/d/1vZhReYP1O0gEJbFFeNmSE8ZzWIZxzsZk/view" target="_blank" rel="noopener">Demo ▸</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="reveal">
+    <div class="sec-h"><span class="idx">04</span><h2>Tech Stack</h2><span class="rule"></span></div>
+    <div class="skills">
+      <div class="skillrow">
+        <div class="k">AI / ML</div>
+        <div class="v">
+          <span class="chip">TensorFlow</span><span class="chip">PyTorch</span><span class="chip">Keras</span><span class="chip">scikit-learn</span><span class="chip">OpenCV</span><span class="chip">YOLO</span><span class="chip">Detectron2</span><span class="chip">MediaPipe</span><span class="chip">Hugging Face</span><span class="chip">XGBoost</span><span class="chip">CUDA</span><span class="chip">NumPy</span><span class="chip">Pandas</span><span class="chip">Gemini</span><span class="chip">LSTM</span>
+        </div>
+      </div>
+      <div class="skillrow">
+        <div class="k">Web</div>
+        <div class="v">
+          <span class="chip">Django</span><span class="chip">Django REST</span><span class="chip">FastAPI</span><span class="chip">React</span><span class="chip">Next.js</span><span class="chip">Node.js</span><span class="chip">Redux</span><span class="chip">WebSockets</span><span class="chip">Streamlit</span><span class="chip">HTML5</span><span class="chip">CSS3</span>
+        </div>
+      </div>
+      <div class="skillrow">
+        <div class="k">Cloud / DB / DevOps</div>
+        <div class="v">
+          <span class="chip">GCP</span><span class="chip">Cloud Run</span><span class="chip">Docker</span><span class="chip">PostgreSQL</span><span class="chip">MongoDB</span><span class="chip">Redis</span><span class="chip">Celery</span><span class="chip">Nginx</span><span class="chip">FFmpeg</span><span class="chip">Git</span><span class="chip">GitHub Actions</span><span class="chip">Vercel</span><span class="chip">Linux</span>
+        </div>
+      </div>
+      <div class="skillrow">
+        <div class="k">Languages</div>
+        <div class="v">
+          <span class="chip">Python</span><span class="chip">JavaScript</span><span class="chip">TypeScript</span><span class="chip">C++</span><span class="chip">SQL</span><span class="chip">Bash</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECOGNITION -->
+  <section id="recognition" class="reveal">
+    <div class="sec-h"><span class="idx">05</span><h2>Awards &amp; Honors</h2><span class="rule"></span></div>
+    <div class="awards">
+      <div class="award"><div class="a-main"><b>Google Startup Program Winner</b> <span>· $25K in GCP credits; trained a 99.5% ball-detection model</span></div><div class="yr">Sep 2025</div></div>
+      <div class="award"><div class="a-main"><b>National Ignite AI Wrapper Award</b> <span>· Runner-Up · 15 finalists from 3,000 applicants</span></div><div class="yr">Oct 2025</div></div>
+      <div class="award"><div class="a-main"><b>HBL P@SHA ICT Awards</b> <span>· Runner-Up · Media &amp; Entertainment, national AI sports-tech</span></div><div class="yr">Sep 2025</div></div>
+      <div class="award"><div class="a-main"><b>Prime Minister Pitch Perfect</b> <span>· Finalist · Top 50 startups nationwide, featured on National TV</span></div><div class="yr">Nov 2025</div></div>
+      <div class="award"><div class="a-main"><b>Vision AI Hackathon Winner</b> <span>· hand-action model using bone-location features</span></div><div class="yr">Jan 2025</div></div>
+      <div class="award"><div class="a-main"><b>Citadel National Pathfinder</b> <span>· Top 8 · national-level startup representation</span></div><div class="yr">Nov 2025</div></div>
+    </div>
+  </section>
+
+  <!-- EDUCATION + CERTS -->
+  <section class="reveal">
+    <div class="sec-h"><span class="idx">06</span><h2>Education &amp; Certifications</h2><span class="rule"></span></div>
+    <div class="two">
+      <div>
+        <div class="edu-card">
+          <div class="deg">BS Computer Science</div>
+          <div class="inst">FAST-NUCES · Islamabad</div>
+          <div class="when">Aug 2022 — May 2026</div>
+        </div>
+      </div>
+      <div>
+        <div class="certgrp">
+          <div class="g">Machine Learning &amp; AI</div>
+          <div class="cert"><div class="c-n">Advanced Learning Algorithms <em>· DeepLearning.AI · Stanford</em></div><div class="c-d">Feb 2025</div></div>
+          <div class="cert"><div class="c-n">Supervised Machine Learning: Regression &amp; Classification <em>· DeepLearning.AI · Stanford</em></div><div class="c-d">Dec 2024</div></div>
+          <div class="cert"><div class="c-n">AI For Everyone <em>· DeepLearning.AI</em></div><div class="c-d">Dec 2024</div></div>
+        </div>
+        <div class="certgrp">
+          <div class="g">Computer Science &amp; C++</div>
+          <div class="cert"><div class="c-n">Accelerated CS Fundamentals <em>· UIUC · Specialization</em></div><div class="c-d">Oct 2024</div></div>
+          <div class="cert"><div class="c-n">Programming in C++: A Hands-on Introduction <em>· Codio · Specialization</em></div><div class="c-d">Aug 2023</div></div>
+        </div>
+        <div class="certgrp">
+          <div class="g">Front-End &amp; Web</div>
+          <div class="cert"><div class="c-n">Introduction to Front-End Development <em>· Meta</em></div><div class="c-d">Nov 2023</div></div>
+          <div class="cert"><div class="c-n">React Basics <em>· Meta</em></div><div class="c-d">Oct 2024</div></div>
+          <div class="cert"><div class="c-n">Advanced React <em>· Meta</em></div><div class="c-d">Oct 2024</div></div>
+          <div class="cert"><div class="c-n">Build Your Portfolio Website with HTML &amp; CSS <em>· Coursera</em></div><div class="c-d">Sep 2022</div></div>
+        </div>
+        <div class="certgrp">
+          <div class="g">Security</div>
+          <div class="cert"><div class="c-n">Ethical Hacking Essentials (EHE) <em>· EC-Council</em></div><div class="c-d">Oct 2024</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <h2>Let's build something.</h2>
+    <p class="sub">Open to collaborations in computer vision, ML systems, and product engineering.</p>
+    <div class="links">
+      <a class="btn primary" href="mailto:saffimhashir123@gmail.com">Email me</a>
+      <a class="btn" href="https://linkedin.com/in/saffi-muhammad-hashir" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a class="btn" href="https://github.com/saffimuhammadhashir" target="_blank" rel="noopener">GitHub ↗</a>
+      <a class="btn" href="https://chrio.site" target="_blank" rel="noopener">chrio.site ↗</a>
+      <a class="btn" href="https://repic.site" target="_blank" rel="noopener">repic.site ↗</a>
+    </div>
+    <div class="colophon">Saffi Muhammad Hashir · Islamabad, Pakistan · +92-312-6247183</div>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var els=document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver'in window)||window.matchMedia('(prefers-reduced-motion:reduce)').matches){
+      els.forEach(function(e){e.classList.add('in')});return;
+    }
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}});
+    },{threshold:.12});
+    els.forEach(function(e){io.observe(e)});
+  })();
+</script>
+</body>
 </html>
